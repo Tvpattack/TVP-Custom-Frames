@@ -157,7 +157,7 @@ init script:
 	is_mutate := { not is_expanded_art() and not is_full_art() and chosen(styling.frames, choice: "mutate") and not is_map()}
 	is_miracle := { chosen(styling.frames, choice: "miracle") and not is_map() and not is_expanded_art() and not is_cons() and not is_fnm() and not is_inverted()}
 	is_nyx := { chosen(styling.frames, choice: "nyx") and not is_map() }
-	is_star := { chosen(styling.altered_plus_frames, choice: "star-") and not is_map() }
+	is_star := { chosen(styling.altered_plus_frames, choice: "-star") and not is_map() }
 	is_starove := { chosen(styling.altered_plus_frames, choice: "star overlay") and not is_map()}
 	is_space := { chosen(styling.altered_plus_frames, choice: "space") and not is_map() }
 	is_path := { chosen(styling.altered_plus_frames, choice: "path") and not is_map() }
