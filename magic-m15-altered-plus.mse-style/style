@@ -738,13 +738,14 @@ card style:
 		padding top: 0
 	card symbol:
 		left: {if card.card_symbol=="none" then 20 else 30}
-		top: {if card.card_symbol == "EX" then 27 else 29}
+		top: {if card.card_symbol == "EX" then 27 else if card.card_symbol =="alchemy" then 30 else 29}
 		height: {if card.card_symbol == "EX" then 25 else 20}
-		width: {if card.card_symbol == "EX" then 21 else 14}
+		width: {if card.card_symbol == "EX" then 21 else if card.card_symbol =="alchemy" then 20 else 14}
 		z index: 12
 		render style: image
 		choice images:
 			tombstone: tombstone.png
+			alchemy: alchemy.png
 			EX: R.png
 	############################# Image
 	image:
