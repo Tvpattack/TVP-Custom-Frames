@@ -636,7 +636,7 @@ card field:
 	choice: none
 	choice: tombstone
 	choice: EX
-	choice: Alchemy
+	choice: alchemy
 	show statistics: false
 	description: The card symbol of the card (Tombstone)
 card field:
