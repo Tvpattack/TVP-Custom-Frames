@@ -55,6 +55,8 @@ init script:
 	# Load scripts for image box
 	include file: /magic-default-image.mse-include/scripts
 	include file: /magic-pride.mse-include/scripts
+	# Load scripts that are redefined from the blends package
+	include file: blends/new-blends
 	# Load scripts that are redefined from the game file
 	# Should hybrids have a grey name?
 	mask_hybrid_with_land := { styling.hybrid_name == "grey" }
@@ -62,10 +64,10 @@ init script:
 
 	#Should multicolor lands with basic land types have a colored name?
 	mask_multi_land_with_color := { styling.colored_multicolor_land_name }
-	base_template_prefix := [card: "" alias: "alias/" alias2: "alias2/" snow:"snow/" snowtexture:"snow/" devoid: "devoid/" devoid2:"devoid2/" nyx: "nyx/" star: "star/" space: "space/" path: "path/" norm: "norm/"  lush: "lush/" smallbox: "smallbox/" miracle: "miracles/" node:"nodes/" promo: "promo/" crown: "legend/" cons:"conspiracy/" curtain: "curtains/" fnm: "fnm/", fnmpt: "paradox/", inverted: "inverted/", invertedpt: "inverted/", map: "maps/" energy: "energies/", mappt: "maps/" pt: "", slide: "masks/", slide2: "masks/", slide3: "masks/", arrow: "arrows/", arrow2: "arrows/", arrow3: "arrows/", season: "season/" stamp: "" identity: "/magic-identity-new.mse-include/", backdfc: "backdfc/", puma: "puma/", front: "flags/", back: "flags/", pins: "pins/"]
+	base_template_prefix := [card: "Normal/" alias: "alias/" alias2: "alias2/" snow:"snow/" snowtexture:"snow/" devoid: "devoid/" devoid2:"devoid2/" nyx: "nyx/" star: "star/" space: "space/" path: "path/" norm: "norm/"  lush: "lush/" smallbox: "smallbox/" miracle: "miracles/" node:"nodes/" promo: "promo/" crown: "legend/" cons:"conspiracy/" curtain: "curtains/" fnm: "fnm/", fnmpt: "paradox/", inverted: "inverted/", invertedpt: "inverted/", map: "maps/" energy: "energies/", mappt: "maps/" pt: "Normal/", pt2: "Normal/", slide: "masks/", slide2: "masks/", slide3: "masks/", arrow: "arrows/", arrow2: "arrows/", arrow3: "arrows/", season: "season/" stamp: "/Stamp" identity: "/magic-identity-new.mse-include/", backdfc: "backdfc/", puma: "puma/", front: "flags/", back: "flags/", pins: "pins/"]
 	shifted_template_prefix := [card: "shifted/" alias: "shifted/" snow:"snow/" snowtexture:"snow/" devoid:"devoid/" devoid2: "devoid2/" nyx: "nyx/" star: "star/" space: "space/" path: "path/" lush: "lush/" norm: "norm/" smallbox:"smallbox/" miracle: "shifted/"  node:"shifted/" promo: "promo/" crown: "shifted/" cons:"conspiracy/" curtain: "curtains/" fnm:"fnm/", fnmpt: "paradox/", inverted: "inverted/", invertedpt: "inverted/", map: "maps/" energy: "energies/", mappt: "maps/" pt: "shifted/", slide: "shifted/", slide2: "shifted/", slide3: "shifted/", arrow: "arrows/", arrow2: "arrows/", arrow3: "arrows/", season: "season/" stamp: "shifted/" identity: "/magic-identity-new.mse-include/", puma: "puma/shifted/"]
 	template_prefix := { if type == "miracle" and pure_snow() then [miracle:"snow/"] else if is_shifted() then shifted_template_prefix else base_template_prefix }
-	template_suffix := [card: "card.jpg"  node:"node.png" alias:"alias.png" alias2:"alias.png" devoid:"card.png" devoid2:"card.png" snow:"card.jpg" snowtexture:"snow.png" nyx: "nyx.png"  star: "star.png" space: "space.png" path: "path.png" norm: "norm.png" lush: "lush.png" smallbox: "smallbox.png" miracle: "miracle.png" promo: "card.jpg" crown: "crown.png" cons:"cons.png" curtain: "card.png" fnm:"card.png", fnmpt: "pt.png", inverted: "card.png", invertedpt: "pt.png", map: "card.png", energy: "card.png", mappt: "pt.png" pt: "pt.png", slide: "slide.png", slide2: "slide2.png", slide3: "slide3.png", stamp: "stamp.jpg", arrow: "arrow.png", arrow2: "arrow2.png", arrow3: "arrow3.png", season: "flag.png" front:"flag.png" back:"flag2.png" identity: "identity.png", backdfc: "back.png", puma: "puma.png", pins: "card.png"]
+	template_suffix := [card: "card.jpg"  node:"node.png" alias:"alias.png" alias2:"alias.png" devoid:"card.png" devoid2:"card.png" snow:"card.jpg" snowtexture:"snow.png" nyx: "nyx.png"  star: "star.png" space: "space.png" path: "path.png" norm: "norm.png" lush: "lush.png" smallbox: "smallbox.png" miracle: "miracle.png" promo: "card.jpg" crown: "crown.png" cons:"cons.png" curtain: "card.png" fnm:"card.png", fnmpt: "pt.png", inverted: "card.png", invertedpt: "pt.png", map: "card.png", energy: "card.png", mappt: "pt.png" pt: "pt.png", pt2: "pt2.png", slide: "slide.png", slide2: "slide2.png", slide3: "slide3.png", stamp: "stamp.jpg", arrow: "arrow.png", arrow2: "arrow2.png", arrow3: "arrow3.png", season: "flag.png" front:"flag.png" back:"flag2.png" identity: "identity.png", backdfc: "back.png", puma: "puma.png", pins: "card.png"]
 	template      := { crown_lead(type) + template_prefix()[type] + input + crown_follow(type) + template_suffix[type] }
 	land_template := { crown_lead(type) + template_prefix()[type] + (if input == "a" then "c" else input) + (if landless(type) then "" else "l") + crown_follow(type) + template_suffix[type] }
 	# Use land templates for previews because they show more contrast
@@ -116,6 +118,7 @@ init script:
 	promo_background := { color_background(type:"promo",     base_hybrid:card_hybrid) }
 	fnm_ptbox := { color_background(type:"fnmpt",     base_hybrid:pt_hybrid) }
 	inverted_ptbox := { color_background(type:"invertedpt",     base_hybrid:pt_hybrid) }
+	pt2 := { color_background(type:"pt2",     base_hybrid:pt_hybrid) }
 	mappt_background := { color_background(type:"mappt",     base_hybrid:pt_hybrid) }
 	arrow_background := { color_background(type:"arrow",     base_hybrid:pt_hybrid) }
 	arrow_background_2 := { color_background(type:"arrow2",     base_hybrid:pt_hybrid) }
@@ -232,6 +235,7 @@ init script:
 	use_evobar := {chosen(styling.other_options, choice:"pokemon evobar")}
 	use_sparkbar := {contains(card.notes, match:"!sparkbar")}
 	is_token := {contains(card.notes, match:"!token")}
+	is_dfc := {contains(card.notes, match:"!dfc")}
 	is_YGO := {chosen(styling.altered_plus_frames, choice:"Yugioh Frame")}
 	is_YGO_gold := {contains(card.notes, match:"!ygogold")}
 	use_gold := {contains(card.notes, match:"!gold")}
@@ -331,7 +335,7 @@ init script:
 		else ""
 	}
 	shown_cr := {if set.automatic_copyright then set.copyright != "" else card.copyright != ""}
-	card_shape := {if is_leveler() then "leveler" else if is_token() then "token" else "normal"}
+	card_shape := {if is_leveler() then "leveler" else if is_token() then "token" else if is_dfc() then "double faced" else "normal"}
 	type_for_shrinking := {if use_box() and not any_box() then remove_tags(card.sub_type) else remove_tags(card.type)}
 	shrink_type := {if styling.shrink_typeline_text != "" then to_int(styling.shrink_typeline_text) else if length(type_for_shrinking()) > 41 then 2 else if length(type_for_shrinking()) > 38 then 1 else 0 }
 ############################################################## Set info fields
@@ -511,6 +515,7 @@ styling field:
 	choice: vorthos box
 	choice: pride pinlines
 	choice: inverted d20
+	choice: edit card code
 	initial: auto nyx crowns, auto familiars, auto vehicles, auto snow, auto star crowns, auto space crowns
 styling field:
 	type: text
@@ -1165,7 +1170,7 @@ card style:
 		font:
 			name: Beleren Bold
 			size: {if is_map() then 14 else 16}
-			color: {if is_shifted() and not black_name() or is_fnm() or is_inverted() or is_familiar() or is_familiarpt() then "white" else if is_vehicle() and (not is_legend() or chosen(styling.other_options, choice:"brown legendary vehicle pt")) then "white" else "black"}
+			color: {if is_shifted() and not black_name() or is_fnm() or is_inverted() or is_familiar() or is_familiarpt() then "white" else if is_vehicle() and (not is_legend() or chosen(styling.other_options, choice:"brown legendary vehicle pt")) then "white" else if is_backdfc() then "white" else "black"}
 			separator color: red
 			shadow color: {if is_shifted() and not black_name() or is_fnm() then rgb(0,0,0) else rgba(0,0,0,0)}
 			shadow displacement x: -1
@@ -1275,8 +1280,11 @@ extra card field:
 	name: card code
 	save value: false
 	script:
-		if set.automatic_card_numbers and not styling.remove_from_autocount then
+		if set.automatic_card_numbers and not (styling.remove_from_autocount or contains(styling.other_options, match: "edit card code")) then
 			forward_editor(prefix: card_number_m15() + "/" + card_count_m15() + " " + rarity_code() + " ", field: card.card_code_text)
+		else if set.automatic_card_numbers and contains(styling.other_options, match: "edit card code") 
+			then
+			combined_editor(field1: card.custom_card_number, separator1: "/" + card_count_m15(), field2: card.card_code_text, separator2: " " + rarity_code() + " ", field3: card.card_code_text_2)
 		else
 			combined_editor(field1: card.custom_card_number, separator: " " + rarity_code() + " ", field2: card.card_code_text)
 extra card field:
@@ -1915,7 +1923,7 @@ extra card style:
 		z index: 13
 		visible: { card.pt != "" }
 		render style: image
-		image: { if is_map() then mappt_background() else if is_vehicle() and (not is_legend() or chosen(styling.other_options, choice:"brown legendary vehicle pt")) then "vpt.png" else if is_familiar() or is_familiarpt() then "fmpt.png" else if is_clear() then "cpt.png" else if use_gold() then "goldpt.png" else choose_ptbox() }
+		image: { if is_map() then mappt_background() else if is_vehicle() and (not is_legend() or chosen(styling.other_options, choice:"brown legendary vehicle pt")) then "vpt.png" else if is_familiar() or is_familiarpt() then "fmpt.png" else if is_clear() then "cpt.png" else if use_gold() then "goldpt.png" else if is_backdfc() then pt2() else choose_ptbox() }
 	pt box 2:
 		left: 278
 		top: { l2_center() - (if is_map() then 26 else 15)}
