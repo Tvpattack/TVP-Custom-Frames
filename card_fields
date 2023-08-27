@@ -139,7 +139,7 @@ card field:
 	choice: none
 	choice: tombstone
 	choice: EX
-	choice: Alchemy
+	choice: alchemy
 	description: Symbol for this card (tombstone)
 card field:
 	type: choice
