@@ -597,7 +597,7 @@ bump_text := {
 	new_text
 }
 bumper := {
-	#if this text isn't modal, at a 5 px margin
+	#if this text isnt modal, at a 5 px margin
 	if is_modal(input) then input else
 	cull_margins("<margin:0:0:5>" + remove_margins(input) + "</margin:0:0:5>")
 	 
