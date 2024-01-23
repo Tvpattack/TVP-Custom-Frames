@@ -73,7 +73,7 @@ init script:
 	# Use land templates for previews because they show more contrast
 	hybrid_previews := "land,hybrid"
 
-	landless := {if input == "nyx" or input == "star" or input == "space" or input == "path" or input == "lush" or input == "smallbox" or input == "sky" or input == "pins" or input == "node" or input == "miracle" or input == "alias" or input == "alias2" or input == "devoid" or input == "devoid2" or input == "energy" or input == "season" or input == "front" or input == "back" or input =="pop" or input == "cpop1" or input == "cpop2" or input == "cpop3" or input == "cpop4" or input == "cpop5" or input == "pro" or input == "
+	landless := {if input == "nyx" or input == "star" or input == "backdfc" or input == "space" or input == "path" or input == "lush" or input == "smallbox" or input == "sky" or input == "pins" or input == "node" or input == "miracle" or input == "alias" or input == "alias2" or input == "devoid" or input == "devoid2" or input == "energy" or input == "season" or input == "front" or input == "back" or input =="pop" or input == "cpop1" or input == "cpop2" or input == "cpop3" or input == "cpop4" or input == "cpop5" or input == "pro" or input == "
 	" or input == "cons" or input == "arrow" or input == "crown" or input == "nyxcrown" or input == "starcrown" or input == "spacecrown" then true else false}
 
 	crown_lead := {
@@ -94,7 +94,8 @@ init script:
 			then "com"
 		else ""
 	}
-	number_of_symbols := { length(cmc_split(card.casting_cost_2)) }
+	mv_split := break_text@(match: "(?ix) 1/2 | [|][WUBRGFCX] | [0-9](/[WUBRGCVLHSFCETQ2X]) | [0-9]+(?!/[WUBRGCVLHSFCETQ2X]) | [WUBRGCVLHSF0-9X](/[WUBRGCVLHSFX])\{0,4} ")
+	number_of_symbols := { length(mv_split(card.casting_cost_2)) }
 
 	prototype_cost := {
 			if number_of_symbols() < 2 then color_background(type:"cpop1", 	base_hybrid:pt_hybrid) 
@@ -174,7 +175,7 @@ init script:
 	is_miracle := { chosen(styling.frames, choice: "miracle") and not is_map() and not is_expanded_art() and not is_cons() and not is_fnm() and not is_inverted()}
 	is_nyx := { chosen(styling.frames, choice: "nyx") and not is_map() }
 	is_sky := { chosen(styling.altered_plus_frames, choice: "sky") and not is_map() }
-	is_star := { chosen(styling.altered_plus_frames, choice: "star overlay") and not is_map() }
+	is_star := { chosen(styling.altered_plus_frames, choice: "star") and not is_map() }
 	is_space := { chosen(styling.altered_plus_frames, choice: "space") and not is_map() }
 	is_path := { chosen(styling.altered_plus_frames, choice: "path") and not is_map() }
 	is_norm := { chosen(styling.altered_plus_frames, choice: "norm") and not is_map() }
@@ -462,7 +463,7 @@ styling field:
 	type: multiple choice
 	name: altered plus frames
 	description: frames that are created for the altered plus frame
-	choice: star overlay
+	choice: star
 	choice: token
 	choice: Yugioh Frame
 	choice: space
@@ -1286,7 +1287,7 @@ card style:
 			shadow displacement y: 1
 
 	pt 2:
-		z index: 15
+		z index: 16
 		left: 291
 		top: {if is_prototype() and not is_mutate() then 355 else if is_prototype() and is_mutate() then 422.2 else (l2_center() - 12)}
 		width: {if is_leveler() and not lone_pt() or card.pt_2 != "" then 60 else if is_prototype() then 60 else 0}
@@ -1626,7 +1627,6 @@ extra card field:
 	choice:
 		name: reversed
 	script: card_color_filter(value)
-	default: card_color(casting_cost: card.casting_cost, rules_text: card.rule_text, type: card.super_type, watermark: card.watermark, card_name: card.name)
 	show statistics: false
 extra card field:
 	type: choice
@@ -1970,7 +1970,6 @@ extra card field:
 	choice:
 		name: reversed
 	script: card_color_filter(value)
-	default: card_color(casting_cost: card.casting_cost, rules_text: card.rule_text, type: card.super_type, watermark: card.watermark, card_name: card.name)
 	show statistics: false
 extra card field:
 	type: multiple choice
@@ -2009,7 +2008,6 @@ extra card field:
 	choice:
 		name: reversed
 	script: card_color_filter(value)
-	default: card_color(casting_cost: card.casting_cost, rules_text: card.rule_text, type: card.super_type, watermark: card.watermark, card_name: card.name)
 	show statistics: false
 extra card field:
 	type: text
