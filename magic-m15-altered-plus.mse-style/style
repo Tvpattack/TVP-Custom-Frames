@@ -64,17 +64,16 @@ init script:
 
 	#Should multicolor lands with basic land types have a colored name?
 	mask_multi_land_with_color := { styling.colored_multicolor_land_name }
-	base_template_prefix := [card: "Normal/" alias: "alias/" alias2: "alias2/" snow:"snow/" snowtexture:"snow/" devoid: "devoid/" devoid2:"devoid2/" nyx: "nyx/" star: "star/" space: "space/" path: "path/" norm: "norm/"  lush: "lush/" smallbox: "smallbox/" sky: "sky/" miracle: "miracles/" node:"nodes/" promo: "promo/" crown: "legend/" cons:"conspiracy/" curtain: "curtains/" fnm: "fnm/", fnmpt: "paradox/", inverted: "inverted/", invertedpt: "inverted/", map: "maps/" energy: "energies/", mappt: "maps/" pt: "Normal/", pt2: "Normal/", slide: "masks/", slide2: "masks/", slide3: "masks/", arrow: "arrows/", arrow2: "arrows/", arrow3: "arrows/", season: "season/" stamp: "Stamp/" identity: "/magic-identity-new.mse-include/", backdfc: "backdfc/", puma: "puma/", front: "flags/", back: "flags/", pins: "pins/", pop: "prototype/", cpop1: "prototype/", cpop2: "prototype/", cpop3: "prototype/", cpop4: "prototype/", cpop5: "prototype/", pro: "prototype/"]
+	base_template_prefix := [card: "Normal/" alias: "alias/" alias2: "alias2/" snow:"snow/" snowtexture:"snow/" devoid: "devoid/" devoid2:"devoid2/" nyx: "nyx/" star: "star/" space: "space/" path: "path/" norm: "norm/"  lush: "lush/" smallbox: "smallbox/" sky: "sky/" miracle: "miracles/" node:"nodes/" promo: "promo/" crown: "legend/" cons:"conspiracy/" curtain: "curtains/" fnm: "fnm/", fnmpt: "paradox/", inverted: "inverted/", invertedpt: "inverted/", map: "maps/" energy: "energies/", mappt: "maps/" pt: "Normal/", pt2: "Normal/", slide: "masks/", slide2: "masks/", slide3: "masks/", arrow: "arrows/", arrow2: "arrows/", arrow3: "arrows/", season: "season/" stamp: "Stamp/" identity: "/magic-identity-new.mse-include/", backdfc: "backdfc/", puma: "puma/", front: "flags/", back: "flags/", pins: "pins/", pop: "prototype/", cpop1: "prototype/", cpop2: "prototype/", cpop3: "prototype/", cpop4: "prototype/", cpop5: "prototype/", pro: "prototype/", adventure: "adventure/", adventure2: "adventure/", adventure3: "adventure/", adventure4: "adventure/", focus: "focus/", focus2: "focus/"]
 	shifted_template_prefix := [card: "shifted/" alias: "shifted/" snow:"snow/" snowtexture:"snow/" devoid:"devoid/" devoid2: "devoid2/" nyx: "nyx/" star: "star/" pins: "pins/" space: "space/" path: "path/" lush: "lush/" norm: "norm/" smallbox:"smallbox/" sky:"sky/" miracle: "shifted/"  node:"shifted/" promo: "promo/" crown: "shifted/" cons:"conspiracy/" curtain: "curtains/" fnm:"fnm/", fnmpt: "paradox/", inverted: "inverted/", invertedpt: "inverted/", map: "maps/" energy: "energies/", mappt: "maps/" pt: "shifted/", slide: "shifted/", slide2: "shifted/", slide3: "shifted/", arrow: "arrows/", arrow2: "arrows/", arrow3: "arrows/", season: "season/" stamp: "shifted/" identity: "/magic-identity-new.mse-include/", puma: "puma/shifted/" cpop1: "prototype/", cpop2: "prototype/", cpop3: "prototype/", cpop4: "prototype/", cpop5: "prototype/", pop: "prototype/" pro: "prototype/"]
 	template_prefix := { if type == "miracle" and pure_snow() then [miracle:"snow/"] else if is_shifted() then shifted_template_prefix else base_template_prefix }
-	template_suffix := [card: "card.jpg"  node:"node.png" alias:"alias.png" alias2:"alias.png" devoid:"card.png" devoid2:"card.png" snow:"card.jpg" snowtexture:"snow.png" nyx: "nyx.png"  star: "star.png" space: "space.png" path: "path.png" norm: "norm.png" lush: "lush.png" smallbox: "smallbox.png" sky: "sky.png" miracle: "miracle.png" promo: "card.jpg" crown: "crown.png" cons:"cons.png" curtain: "card.png" fnm:"card.png", fnmpt: "pt.png", inverted: "card.png", invertedpt: "pt.png", map: "card.png", energy: "card.png", mappt: "pt.png" pt: "pt.png", pt2: "pt2.png", slide: "slide.png", slide2: "slide2.png", slide3: "slide3.png", stamp: "stamp.jpg", arrow: "arrow.png", arrow2: "arrow2.png", arrow3: "arrow3.png", season: "flag.png" front:"flag.png" back:"flag2.png" identity: "identity.png", backdfc: "back.png", puma: "puma.png", pins: "card.png", pop: "pop.png", cpop1: "cpop1.png", cpop2: "cpop2.png", cpop3: "cpop3.png", cpop4: "cpop4.png", cpop5: "cpop5.png", pro: "pro.png"]
+	template_suffix := [card: "card.jpg"  node:"node.png" alias:"alias.png" alias2:"alias.png" devoid:"card.png" devoid2:"card.png" snow:"card.jpg" snowtexture:"snow.png" nyx: "nyx.png"  star: "star.png" space: "space.png" path: "path.png" norm: "norm.png" lush: "lush.png" smallbox: "smallbox.png" sky: "sky.png" miracle: "miracle.png" promo: "card.jpg" crown: "crown.png" cons:"cons.png" curtain: "card.png" fnm:"card.png", fnmpt: "pt.png", inverted: "card.png", invertedpt: "pt.png", map: "card.png", energy: "card.png", mappt: "pt.png" pt: "pt.png", pt2: "pt2.png", slide: "slide.png", slide2: "slide2.png", slide3: "slide3.png", stamp: "stamp.jpg", arrow: "arrow.png", arrow2: "arrow2.png", arrow3: "arrow3.png", season: "flag.png" front:"flag.png" back:"flag2.png" identity: "identity.png", backdfc: "back.png", puma: "puma.png", pins: "card.png", pop: "pop.png", cpop1: "cpop1.png", cpop2: "cpop2.png", cpop3: "cpop3.png", cpop4: "cpop4.png", cpop5: "cpop5.png", pro: "pro.png", adventure:"card.png", adventure2:"card2.png", adventure3:"card3.png", adventure4:"card4.png", focus:"focus.png", focus2:"focus2.png"]
 	template      := { crown_lead(type) + template_prefix()[type] + input + crown_follow(type) + template_suffix[type] }
 	land_template := { crown_lead(type) + template_prefix()[type] + (if input == "a" then "c" else input) + (if landless(type) then "" else "l") + crown_follow(type) + template_suffix[type] }
 	# Use land templates for previews because they show more contrast
 	hybrid_previews := "land,hybrid"
 
-	landless := {if input == "nyx" or input == "star" or input == "backdfc" or input == "space" or input == "path" or input == "lush" or input == "smallbox" or input == "sky" or input == "pins" or input == "node" or input == "miracle" or input == "alias" or input == "alias2" or input == "devoid" or input == "devoid2" or input == "energy" or input == "season" or input == "front" or input == "back" or input =="pop" or input == "cpop1" or input == "cpop2" or input == "cpop3" or input == "cpop4" or input == "cpop5" or input == "pro" or input == "
-	" or input == "cons" or input == "arrow" or input == "crown" or input == "nyxcrown" or input == "starcrown" or input == "spacecrown" then true else false}
+	landless := {if input == "nyx" or input == "star" or input == "backdfc" or input == "space" or input == "path" or input == "lush" or input == "smallbox" or input == "sky" or input == "pins" or input == "node" or input == "miracle" or input == "alias" or input == "alias2" or input == "devoid" or input == "devoid2" or input == "energy" or input == "season" or input == "front" or input == "back" or input =="pop" or input == "cpop1" or input == "cpop2" or input == "cpop3" or input == "cpop4" or input == "cpop5" or input == "pro" or input == "adventure2" or input == "adventure4" or input == "focus" or input == "focus2" or input == "" or input == "cons" or input == "arrow" or input == "crown" or input == "nyxcrown" or input == "starcrown" or input == "spacecrown" then true else false}
 
 	crown_lead := {
 		if input != "crown" then ""
@@ -142,6 +141,12 @@ init script:
 	background_slide_3 := { color_background(type:"slide3", base_hybrid: card_hybrid)}
 	season_background := { color_background(type:"season",     base_hybrid:card_hybrid) }
 	smallbox_colors := { color_background(type:"smallbox", 	base_hybrid:card_hybrid) }
+	adventure_colors := { color_background(type:"adventure", 	base_hybrid:card_hybrid) }
+	adventure2_colors := { color_background(type:"adventure2", 	base_hybrid:card_hybrid) }
+	adventure3_colors := { color_background(type:"adventure3", 	base_hybrid:card_hybrid) }
+	adventure4_colors := { color_background(type:"adventure4", 	base_hybrid:card_hybrid) }
+	focus_colors := { color_background(type:"focus", 	base_hybrid:card_hybrid) }
+	focus2_colors := { color_background(type:"focus2", 	base_hybrid:card_hybrid) }
 	prototype_pt := { color_background(type:"pop", 	base_hybrid:card_hybrid) }
 	prototype_colors := { color_background(type:"pro", 	base_hybrid:card_hybrid) }
 	front_flag_image := { color_background(type:"front", base_hybrid:card_hybrid) }
@@ -165,6 +170,7 @@ init script:
 	is_promo := { styling.promo }
 	is_stamped := {styling.use_holofoil_stamps and (card.rarity ==  "rare" or card.rarity == "mythic rare")}
 	has_identity := { styling.color_indicator_dot }
+	has_identity2 := { styling.color_indicator_dot_2 }
 	shrink_name := {if styling.shrink_name_text != "" then to_int(styling.shrink_name_text) else 0 }
 	is_unsorted := {styling.remove_from_autocount}
 	is_devoid := { chosen(styling.frames, choice: "devoid") and not is_map()}
@@ -173,6 +179,10 @@ init script:
 	is_puma := { chosen(styling.frames, choice: "puma") and not is_map() and not is_clear() and not contains(styling.frames, match:"less art") and not is_full_art() }
 	is_mutate := { not is_full_art() and chosen(styling.frames, choice: "mutate") and not is_map()}
 	is_miracle := { chosen(styling.frames, choice: "miracle") and not is_map() and not is_expanded_art() and not is_cons() and not is_fnm() and not is_inverted()}
+	is_adventure := {chosen(styling.frames, choice: "adventure") and chosen(styling.adventure_type, choice: "normal")}
+	is_adventure2 := {chosen(styling.frames, choice: "adventure") and chosen(styling.adventure_type, choice: "reversed")}
+	is_focus := {chosen(styling.frames, choice: "adventure") and chosen(styling.adventure_type, choice: "focus")}
+	is_focus2 := {chosen(styling.frames, choice: "adventure") and chosen(styling.adventure_type, choice: "reversed focus")}
 	is_nyx := { chosen(styling.frames, choice: "nyx") and not is_map() }
 	is_sky := { chosen(styling.altered_plus_frames, choice: "sky") and not is_map() }
 	is_star := { chosen(styling.altered_plus_frames, choice: "star") and not is_map() }
@@ -253,8 +263,7 @@ init script:
 	use_sparkbar := {contains(card.notes, match:"!sparkbar")}
 	is_token := { chosen(styling.altered_plus_frames, choice: "token")}
 	is_altcast := {chosen(styling.frames, choice:"adventure") or contains(card.notes, match:"!alt")}
-	focus := {chosen(styling.altered_plus_frames, choice: "focus") and chosen(styling.frames, choice: "adventure")}
-	is_reversed := {contains(card.notes, match:"!reverse")}
+	is_reversed := {chosen(styling.frames, choice: "adventure") and (chosen(styling.adventure_type, choice: "reversed") or (chosen(styling.adventure_type, choice: "reversed focus")))}
 	is_YGO := {chosen(styling.altered_plus_frames, choice:"Yugioh Frame")}
 	is_YGO_gold := {contains(card.notes, match:"!ygogold")}
 	use_gold := {contains(card.notes, match:"!gold")}
@@ -437,6 +446,13 @@ styling field:
 	choice: snow
 styling field:
 	type: choice
+	name: adventure type
+	choice: normal
+	choice: reversed
+	choice: focus
+	choice: reversed focus
+styling field:
+	type: choice
 	name: Card Notes Frame options
 	choice: <<Card Notes Frame options>>
 	choice: Altered Plus has many frame options available in card notes! 
@@ -471,7 +487,6 @@ styling field:
 	choice: path
 	choice: lush
 	choice: familiar
-	choice: focus
 	choice: norm
 	choice: backdfc
 	choice: front flag
@@ -602,6 +617,11 @@ styling field:
 	initial: no
 styling field:
 	type: boolean
+	name: color indicator dot 2
+	description: Use the color indicator dot for the adventure half
+	initial: no
+styling field:
+	type: boolean
 	name: remove from autocount
 	description: Removes the automatic card number for specific cards, to allow for overcounted cards like in Planeswalker Decks.
 	initial: no
@@ -724,7 +744,7 @@ card style:
 		z index: 10
 		render style: image
 		popup style: in place
-		image: { if is_clear() or clear_tops() then "" else if is_fnm() then fnm_background() else if is_inverted() then inverted_background() else if is_full_art() then promo_background() else if pure_snow() then snow_background() else card_background() }
+		image: { if is_clear() or clear_tops() then "" else if is_fnm() then fnm_background() else if is_inverted() then inverted_background() else if is_full_art() then promo_background() else if pure_snow() then snow_background() else if is_adventure() then adventure_colors() else if is_adventure2() then adventure2_colors() else card_background() }
 	############################# Name line
 	name:
 		left: { if center_map() then 55 else if is_map() then (if use_node() then 65 else 60) else if use_node() then 58 else if card.card_symbol=="none" then 32 else 50 }
@@ -744,9 +764,9 @@ card style:
 			shadow displacement y: 2
 			shadow blur: 5
 	name 2:
-		left: { if is_reversed() then 185 else if is_altcast() then 31 else 0}
-		top: {333}
-		right: { if is_altcast() then (177 - card_style.casting_cost_2.content_width) else if is_reversed() then (88 - card_style.casting_cost_2.content_width)  else 0 }
+		left: { if is_adventure2() then 197 else if is_focus2() then 192 else if is_adventure() then 32 else if is_focus() then 31 else 0}
+		top: {if is_adventure2() or is_adventure() then 328 else 333}
+		right: {if is_adventure2() then (28 - card_style.casting_cost_2.content_width) else if is_adventure() then (178 - card_style.casting_cost_2.content_width) else if is_focus2() then (88 - card_style.casting_cost_2.content_width) else if is_focus() then (177 - card_style.casting_cost_2.content_width)  else 0}
 		height: { 20 - shrink_name2() }
 		alignment: bottom shrink-overflow
 		z index: 15
@@ -799,9 +819,9 @@ card style:
 		z index: 13
 		padding top: 0
 	casting cost 2:
-		right: {if is_reversed() then 335 else if is_altcast() then 183 else if is_prototype() then 342 else 0}
-		top: {if is_prototype() and not is_mutate() then 330.5 else if is_mutate() and is_prototype() then 397.7 else 333.5}
-		width: { if is_altcast() or is_reversed() then (max(30, card_style.casting_cost_2.content_width) + 5) else if is_prototype() then (max(45, card_style.casting_cost_2.content_width) + 5) else 0}
+		right: {if is_adventure2() then 345 else if is_adventure() then 180 else if is_focus2() then 341 else if is_focus() then 183 else if is_prototype() then 342 else 0}
+		top: {if is_adventure2() or is_adventure() then 328 else if is_prototype() and not is_mutate() then 330.5 else if is_mutate() and is_prototype() then 397.7 else 333.5}
+		width: { if is_altcast() then (max(30, card_style.casting_cost_2.content_width) + 5) else if is_prototype() then (max(45, card_style.casting_cost_2.content_width) + 5) else 0}
 		height: 20
 		alignment: middle right
 		symbol font:
@@ -857,7 +877,7 @@ card style:
 		height: 17
 		z index: 12
 		render style: image
-		visible: { styling.color_indicator_dot }
+		visible: { has_identity() }
 		image: { card_identity() }
 	type:
 		left: { if is_map() then 85 else if is_season() then (if styling.color_indicator_dot then 64 else 44)+(if is_clear() then 4 else 0) else (if styling.color_indicator_dot then 52 else 32) + (if is_clear() then 4 else 0) }
@@ -878,11 +898,20 @@ card style:
 			shadow displacement y: 2
 			shadow blur: 5
 			separator color: red
+	indicator 2:
+		left: {(if is_adventure2() then 165 else if is_focus2() then 158 else 0) + (if has_identity2() then 30 else 0)}
+		top: {355}
+		width: 15
+		height: 15
+		z index: 2
+		render style: image
+		visible: {has_identity2()}
+		image: {card_identity_2()}
 	type 2:
-		left: {(if is_reversed() then 186 else 32) + 0}
-		top: {shrink_type2() + 358}
-		width: {if is_altcast() or is_reversed() then 155 else 0}
-		height: { 19 - shrink_type2() }
+		left: {if is_adventure2() then 197 else if is_adventure() then 32 else if is_focus2() then 194 else if is_focus() then 32 else 0}
+		top: {(if is_adventure2() or is_adventure() then 352 else 358) + (shrink_type2())}
+		width: {(if is_altcast() then 155 else 0) - (if has_identity2() then 20 else 0)}
+		height: { 20 - shrink_type2() }
 		alignment: top shrink-overflow
 		z index: 16
 		padding top: 2
@@ -984,9 +1013,9 @@ card style:
 			shadow blur: 5
 	############################# Text boxs
 	text:
-		left: { if (card.level_0 != "" or card.level_1 != "" or card.level_2 != "") then 75 else if is_map() then 40 else if is_altcast() and not is_reversed() then 190 else 29}
+		left: { if (card.level_0 != "" or card.level_1 != "" or card.level_2 != "") then 75 else if is_map() then 40 else if is_focus2() or is_adventure2() then 27 else if is_focus() then 190 else if is_adventure() then 200 else 29}
 		top: {top_of_textbox()}
-		width: { if is_leveler() then 0 else (if(card.level_0 != "" or card.level_1 != "" or card.level_2 != "") then -46 else 0) + if is_map() then 287 else if is_reversed() or is_altcast() then 154 else 314 }
+		width: { if is_leveler() then 0 else (if(card.level_0 != "" or card.level_1 != "" or card.level_2 != "") then -46 else 0) + if is_map() then 287 else if is_focus2() or is_focus() then 154 else if is_adventure2() then 157 else if is_adventure() then 143 else 314 }
 		bottom: {bottom_of_textbox()}
 		font:
 			name: MPlantin
@@ -1019,9 +1048,9 @@ card style:
 		line height hard max: {if is_modal(card.rule_text) then 1.0 else 1.3 }
 		line height line max: 1.6
 	text 2:
-		left: {if is_reversed() then 190 else if is_altcast() then 30 else if is_prototype() then 28 else 0}
+		left: {if is_adventure2() then 190 else if is_adventure() then 29 else if is_focus2() then 188 else if is_focus() then 30 else if is_prototype() then 28 else 0}
 		top: {if is_prototype() and not is_mutate() then 327.5 else if is_prototype() and is_mutate() then 394.7 else 381}
-		width: {if is_altcast() or is_reversed() then 158 else if is_prototype() then min(260, 324 - 20*number_of_symbols()) else 0}
+		width: {if is_adventure2() or is_adventure() then 157 else if is_focus2() or is_focus() then 158 else if is_prototype() then min(260, 324 - 20*number_of_symbols()) else 0}
 		bottom: {if is_prototype() and not is_mutate() then 384 else if is_prototype() and is_mutate() then 451.2 else 481}
 		font:
 			name: MPlantin
@@ -1191,9 +1220,9 @@ card style:
 		line height hard max: {if is_modal(card.level_4_text) then 1.0 else 1.3 }
 		line height line max: 1.6
 	watermark:
-		left: { if is_map() then 40 else 19 }
+		left: { if is_map() then 40 else if is_reversed() then 20 else if is_altcast() then 188 else 19 }
 		top: { if is_full_art() then 359 else if is_prototype() then 384 else 330 }
-		width: { if is_map() then 287 else 334 }
+		width: { if is_map() then 287 else if is_altcast() then 163 else 334 }
 		height: { if is_map() then 154 else if is_full_art() then 120 else if is_prototype() then 100 else 152 }
 		z index: 12
 		render style: image
@@ -1482,6 +1511,167 @@ extra card field:
 	choice: car door
 	save value: false
 	editable: false
+extra card field:
+	type: choice
+	name: adventure overlay
+	script: card.card_color
+	save value: false
+	editable: false
+extra card field:
+	type: multiple choice
+	name: adventure overlay2
+	default: card.card_color_2
+	empty choice: colorless
+	choice: white
+	choice: blue
+	choice: black
+	choice: red
+	choice: green
+	choice:
+		name: silver
+		line below: true
+	choice: artifact
+	choice: multicolor
+	choice:
+		name: hybrid
+		line below: true
+	choice:
+		name: horizontal
+		type: radio
+	choice:
+		name: vertical
+		type: radio
+	choice:
+		name: radial
+		type: radio
+	choice:
+		name: diagonal
+		type: radio
+	choice:
+		name: overlay
+		type: radio
+	choice:
+		name: reversed
+	script: card_color_filter(value)
+	show statistics: true
+extra card field:
+	type: choice
+	name: adventure overlay3
+	script: card.card_color
+	save value: false
+	editable: false
+extra card field:
+	type: multiple choice
+	name: adventure overlay4
+	default: card.card_color_2
+	empty choice: colorless
+	choice: white
+	choice: blue
+	choice: black
+	choice: red
+	choice: green
+	choice:
+		name: silver
+		line below: true
+	choice: artifact
+	choice: multicolor
+	choice:
+		name: hybrid
+		line below: true
+	choice:
+		name: horizontal
+		type: radio
+	choice:
+		name: vertical
+		type: radio
+	choice:
+		name: radial
+		type: radio
+	choice:
+		name: diagonal
+		type: radio
+	choice:
+		name: overlay
+		type: radio
+	choice:
+		name: reversed
+	script: card_color_filter(value)
+	show statistics: false
+extra card field:
+	type: multiple choice
+	name: focus overlay
+	default: card.card_color_2
+	empty choice: colorless
+	choice: white
+	choice: blue
+	choice: black
+	choice: red
+	choice: green
+	choice:
+		name: silver
+		line below: true
+	choice: artifact
+	choice: multicolor
+	choice:
+		name: hybrid
+		line below: true
+	choice:
+		name: horizontal
+		type: radio
+	choice:
+		name: vertical
+		type: radio
+	choice:
+		name: radial
+		type: radio
+	choice:
+		name: diagonal
+		type: radio
+	choice:
+		name: overlay
+		type: radio
+	choice:
+		name: reversed
+	script: card_color_filter(value)
+	show statistics: false
+extra card field:
+	type: multiple choice
+	name: focus overlay2
+	script: card.card_color_2
+	empty choice: colorless
+	choice: white
+	choice: blue
+	choice: black
+	choice: red
+	choice: green
+	choice:
+		name: silver
+		line below: true
+	choice: artifact
+	choice: multicolor
+	choice:
+		name: hybrid
+		line below: true
+	choice:
+		name: horizontal
+		type: radio
+	choice:
+		name: vertical
+		type: radio
+	choice:
+		name: radial
+		type: radio
+	choice:
+		name: diagonal
+		type: radio
+	choice:
+		name: overlay
+		type: radio
+	choice:
+		name: reversed
+	script: card_color_filter(value)
+	show statistics: false
+	show statistics: false
 extra card field:
 	type: choice
 	name: snow overlay
@@ -2310,6 +2500,64 @@ extra card style:
 		image: {"voverlay" + (if is_full_art() then "_full" else "") + ".png" }
 		z index: 10
 		visible: {is_vehicle()}
+	adventure overlay:
+		left: 0
+		top: 0
+		width: 375
+		height: 523
+		render style: image
+		popup style: in place
+		image: {adventure_colors()}
+		z index: 10
+		visible: {is_adventure()}
+	adventure overlay2:
+		left: 20
+		top: 327
+		width: {if is_adventure() then 169 else 0}
+		height: 155
+		render style: image
+		popup style: in place
+		image: {adventure2_colors()}
+		z index: 11
+		visible: {is_adventure()}
+	adventure overlay3:
+		left: 0
+		top: 0
+		width: 375
+		height: 523
+		render style: image
+		popup style: in place
+		image: {adventure3_colors()}
+		z index: 10
+		visible: {is_adventure2()}
+	adventure overlay4:
+		left: 187
+		top: 327
+		width: {if is_adventure2() then 169 else 0}
+		height: 155
+		render style: image
+		popup style: in place
+		image: {adventure4_colors()}
+		z index: 11
+		visible: {is_adventure2()}
+	focus overlay:
+		left: 27
+		top: 326
+		width: {if is_focus() then 163 else 0}
+		height: 157
+		render style: image
+		image: {focus_colors()}
+		z index: 11
+		visible: {is_focus()}
+	focus overlay2:
+		left: 185
+		top: 326
+		width: {if is_focus2() then 163 else 0}
+		height: 157
+		render style: image
+		image: {focus2_colors()}
+		z index: 11
+		visible: {is_focus2()}
 	familiar overlay:
 		left: 0
 		top: 0
@@ -2465,7 +2713,7 @@ extra card style:
 		image: sparkbar_tip.png
 		visible: {use_sparkbar()}
 	flavor bar:
-		left: {if is_altcast() then 175 else 0}
+		left: {if is_reversed() then 10 else if is_altcast() then 175 else 0}
 		top: { bar_equation() }
 		width: {if is_altcast() then 188 else 375}
 		height: 1
