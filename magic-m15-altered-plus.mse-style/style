@@ -2440,7 +2440,7 @@ extra card style:
 		image: {sky_background()}
 		z index: 11
 		visible: {is_sky()}
-		mask: {if is_puma() then "imagemasks/pumamask.png" else if is_YGO() then "imagemasks/YGOmask.png" else ("imagemasks/" + (if is_vehicle() then "v_" else "") + (if is_familiar() then "f_" else "") + (if is_full_art() then "full" else "") + "mask.png")}
+		mask: {if is_puma() then "imagemasks/pumamask.png" else if is_YGO() then "imagemasks/YGOmask.png" else ("imagemasks/" + (if is_vehicle() then "v_" else "") + (if is_familiar() then "f_" else "") + (if is_full_art() then "full" else "") + "masksky.png")}
 ### FNM has a teeny mask because of a few pixel disagreements between it and normal frames
 	crown:
 		left: 0
