@@ -34,7 +34,7 @@
 		else								"cc"
 }
 hybrid_color := {
-	if 	trim_colors(card.card_color) == "white,	blue" then "wu"
+	if trim_colors(card.card_color) == "white, blue" then "wu"
 	else if trim_colors(card.card_color) == "white, black" then "wb"
 	else if trim_colors(card.card_color) == "white, red" then "rw"
 	else if trim_colors(card.card_color) == "white, green" then "gw"
