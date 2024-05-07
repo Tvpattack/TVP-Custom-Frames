@@ -938,7 +938,7 @@ card style:
 		height: 22
 		z index: 15
 		render style: image
-		visible: {not is_backdfc()}
+		visible: {not is_backdfc() or is_rem() and not (card.rarity == "basic land")}
 		alignment: middle right
 		choice images:
 			# Images based on the set symbol
@@ -2835,7 +2835,7 @@ extra card style:
 		z index: 12
 		render style: image
 		image: {overlay1()}
-		visible: {is_readable() or (is_d20() and number_of_rolls(card.text) > 0) or (is_leveler() and not is_full_art() and not is_map() and not is_fnm() and not is_inverted() and not is_clear())}
+		visible: {(is_readable() and (card.rule_text != "")) or (is_d20() and number_of_rolls(card.text) > 0) or (is_leveler() and not is_full_art() and not is_map() and not is_fnm() and not is_inverted() and not is_clear())}
 	level 3 overlay:
 		left: 29
 		top: { if is_readable() then 30 else if is_d20() then top_of_para(rolls_start(card.text)+2) else 329 + lv_3_coordinate()}
@@ -2844,7 +2844,7 @@ extra card style:
 		z index: 12
 		render style: image
 		image: {overlay2()}
-		visible: {is_readable() or (is_d20() and number_of_rolls(card.text)-no_roll(card.text) > 2) or (is_leveler() and not is_full_art() and not is_map() and not is_fnm() and not is_inverted() and not is_clear())}
+		visible: {(is_readable() and (card.name != "")) or (is_d20() and number_of_rolls(card.text)-no_roll(card.text) > 2) or (is_leveler() and not is_full_art() and not is_map() and not is_fnm() and not is_inverted() and not is_clear())}
 	level 4 overlay:
 		left: 29
 		top: { if is_readable() then 300 else if is_d20() then top_of_para(rolls_start(card.text)+4) else 329 + lv_4_coordinate()}
@@ -2853,7 +2853,7 @@ extra card style:
 		z index: 12
 		render style: image
 		image: {overlay3()}
-		visible: {is_readable() or (is_d20() and number_of_rolls(card.text)-no_roll(card.text) > 4) or (is_leveler() and not is_full_art() and not is_map() and not is_fnm() and not is_inverted() and not is_clear())}
+		visible: {(is_readable() and (to_text(card.type) != "")) or (is_d20() and number_of_rolls(card.text)-no_roll(card.text) > 4) or (is_leveler() and not is_full_art() and not is_map() and not is_fnm() and not is_inverted() and not is_clear())}
 	arrow 1:
 		z index: 15
 		left: {arrow_left()}
