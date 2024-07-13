@@ -26,7 +26,7 @@
 		else if trim_colors(card.card_color) == "black" then "bb"
 		else if trim_colors(card.card_color) == "red" then "rr"
 		else if trim_colors(card.card_color) == "green" then "gg"
-		else if trim_colors(card.card_color) == "silver" then	"ff"
+		else if trim_colors(card.card_color) == "silver" then	"ii"
 		else if contains(card.card_color, match:"multi") or
 				contains(card.card_color, match:"hybrid") or
 				contains(card.card_color, match:", land")	then	hybrid_color()
@@ -54,11 +54,11 @@ hybrid_color := {
 	else if trim_colors(card.card_color) == "black, red, reversed" then "rb"
 	else if trim_colors(card.card_color) == "black, green, reversed" then "bg"
 	else if trim_colors(card.card_color) == "red, green, reversed" then "gr"
-	else if trim_colors(card.card_color) == "white, silver, reversed" then "fw"
-	else if trim_colors(card.card_color) == "blue, silver, reversed" then "fu"
-	else if trim_colors(card.card_color) == "black, silver, reversed" then "fb"
-	else if trim_colors(card.card_color) == "red, silver, reversed" then "fr"
-	else if trim_colors(card.card_color) == "green, silver, reversed" then "fg"
+	else if trim_colors(card.card_color) == "white, silver, reversed" then "iw"
+	else if trim_colors(card.card_color) == "blue, silver, reversed" then "iu"
+	else if trim_colors(card.card_color) == "black, silver, reversed" then "ib"
+	else if trim_colors(card.card_color) == "red, silver, reversed" then "ir"
+	else if trim_colors(card.card_color) == "green, silver, reversed" then "ig"
 	else "mm"
 }
 ########################################################################
@@ -837,13 +837,13 @@ color_background := {
 	if land and colored_lands then template := land_template # use land template instead?
 	
 	# The selected colors
-	colors := sort_text( order: if card_is_wedge(input) then "(wbgur)" else "f(wubrg)"
+	colors := sort_text( order: if card_is_wedge(input) then "(wbgur)" else "i(wubrg)"
 					, (if chosen(choice:"white") then "w")
 					+ (if chosen(choice:"blue") then "u")
 					+ (if chosen(choice:"black") then "b")
 					+ (if chosen(choice:"red") then "r")
 					+ (if chosen(choice:"green") then "g")
-					+ (if chosen(choice:"silver") then "f"))
+					+ (if chosen(choice:"silver") then "i"))
 	if multi and (hybrid or colors == "") then (
 		colors := colors + "m"
 		multi := false
@@ -989,7 +989,7 @@ font_white	:= {
 				+ (if chosen(choice:"black"	)	then "b")
 				+ (if chosen(choice:"red"	)	then "r")
 				+ (if chosen(choice:"green"	)	then "g")
-				+ (if chosen(choice:"silver" )	then "f"))
+				+ (if chosen(choice:"silver" )	then "i"))
 				+ (if artifact				then "a")
 	font_colors_white(
 		if		chosen(choice:"land")			then "l"

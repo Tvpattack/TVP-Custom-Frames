@@ -664,6 +664,7 @@
 		                   + (if chosen(choice:"black") then "b")
 		                   + (if chosen(choice:"red")   then "r")
 		                   + (if chosen(choice:"green") then "g")
+		                   + (if chosen(choice:"silver") then "i")
 		                   + (if chosen(choice:"purple") then "p")
 						   + (if chosen(choice:"yellow") then "l")
 						   + (if chosen(choice:"orange") then "o")
@@ -716,6 +717,7 @@
 						else if styling.outer_color == "black" then "b"
 						else if styling.outer_color == "red" then "r"
 						else if styling.outer_color == "green" then "g"
+						else if styling.outer_color == "silver" then "i"
 						else if styling.outer_color == "purple" then "p"
 						else if styling.outer_color == "pink" then "k"
 						else if styling.outer_color == "yellow" then "l"
@@ -737,6 +739,7 @@
 							else if styling.inner_color == "black" then "b"
 							else if styling.inner_color == "red" then "r"
 							else if styling.inner_color == "green" then "g"
+							else if styling.inner_color == "silver" then "i"
 							else if styling.inner_color == "purple" then "p"
 							else if styling.inner_color == "orange" then "o"
 							else if styling.inner_color == "yellow" then "l"
@@ -756,6 +759,7 @@
 							else if styling.trim_color == "black" then "b"
 							else if styling.trim_color == "red" then "r"
 							else if styling.trim_color == "green" then "g"
+							else if styling.trim_color == "silver" then "i"
 							else if styling.trim_color == "purple" then "p"
 							else if styling.trim_color == "orange" then "o"
 							else if styling.trim_color == "brown" then "e"

@@ -29,6 +29,7 @@
 		else if trim_colors(card.card_color) == "black"			then	"bb"
 		else if trim_colors(card.card_color) == "red"			then	"rr"
 		else if trim_colors(card.card_color) == "green"			then	"gg"
+		else if trim_colors(card.card_color) == "silver"		then	"ii"
 		else if contains(card.card_color, match:"multi")		or
 				contains(card.card_color, match:"hybrid")	or
 				contains(card.card_color, match:", land")	then	hybrid_color()
@@ -834,13 +835,13 @@ color_background := {
 	if land and colored_lands then template := land_template # use land template instead?
 	
 	# The selected colors
-	colors := sort_text( order: if card_is_wedge(input) then "(wbgur)" else "(fplonkwubrg)"
+	colors := sort_text( order: if card_is_wedge(input) then "(wbgur)" else "(iplonkwubrg)"
 					, (if chosen(choice:"white"	)	then "w")
 					+ (if chosen(choice:"blue"	)	then "u")
 					+ (if chosen(choice:"black"	)	then "b")
 					+ (if chosen(choice:"red"	)	then "r")
 					+ (if chosen(choice:"green"	)	then "g")
-					+ (if chosen(choice:"silver" )	then "f")
+					+ (if chosen(choice:"silver" )	then "i")
 					+ (if chosen(choice:"purple" )	then "p")
 					+ (if chosen(choice:"yellow" )	then "l")
 					+ (if chosen(choice:"orange" )	then "o")
@@ -985,13 +986,13 @@ font_color_positions := [
 font_white	:= {
 	hybrid		:=		  chosen(choice:"hybrid"	)
 	artifact	:=		  chosen(choice:"artifact"	)
-	colors		:= sort_text( order: "(fplonkwubrg)"
+	colors		:= sort_text( order: "(iplonkwubrg)"
 				, (if chosen(choice:"white"	)	then "w")
 				+ (if chosen(choice:"blue"	)	then "u")
 				+ (if chosen(choice:"black"	)	then "b")
 				+ (if chosen(choice:"red"	)	then "r")
 				+ (if chosen(choice:"green"	)	then "g")
-				+ (if chosen(choice:"silver" )	then "f")
+				+ (if chosen(choice:"silver" )	then "i")
 				+ (if chosen(choice:"purple" )	then "p")
 				+ (if chosen(choice:"yellow" )	then "l")
 				+ (if chosen(choice:"orange" )	then "o")

@@ -71,7 +71,7 @@ color_name := {
 	else if input == "B" then "black"
 	else if input == "R" then "red"
 	else if input == "G" then "green"
-	else if input == "F" then "silver"
+	else if input == "I" then "silver"
 	else if input == "P" then "purple"
 	else if input == "L" then "yellow"
 	else if input == "O" then "orange"
@@ -85,6 +85,7 @@ mana_name := {
 	else if input == "black" then "B"
 	else if input == "red" then "R"
 	else if input == "green" then "G"
+	else if input == "silver" then "I"
 	else                     "C"
 }
 color_names_1 := { color_name(colors.0) }
@@ -158,6 +159,7 @@ land_to_color := {
 	else if watermark == "mana symbol black" then "black, land"
 	else if watermark == "mana symbol red"   then "red, land"
 	else if watermark == "mana symbol green" then "green, land"
+	else if watermark == "mana symbol silver" then "silver, land"
 	else land_multicolor(colors:color_text_filter(input: rules))
 }@(rules:card.rule_text)
 
@@ -168,7 +170,7 @@ text_to_color := {
 	  text := filter_text(match: "is (colorless|all colors|((blue|white|green|red|black)((,|,? and) (blue|white|green|red|black))*))", in_context: regex_escape(card_name)+"(</[-a-z]+>)* <match>\\.")
 	  if text != "" then (
 	    if contains(text, match: "all colors") then (
-		colors := "WUBRG"
+		colors := "WUBRGI"
 		if land == "true" then land_multicolor()
 		else mana_to_color(hybrid: "")
 	    ) else (
@@ -178,6 +180,7 @@ text_to_color := {
 		if contains(text, match: "black") then colors := colors + "B"
 		if contains(text, match: "red")   then colors := colors + "R"
 		if contains(text, match: "green") then colors := colors + "G"
+		if contains(text, match: "silver") then colors := colors + "I"
 		if land == "true" then land_multicolor()
 		else mana_to_color(hybrid: "")
 	    )
@@ -271,6 +274,7 @@ basic_land_sort := {
 	else if contains(card.name, match:"Swamp")    then "MD"      # Swamps
 	else if contains(card.name, match:"Mountain") then "ME"      # Mountains
 	else if contains(card.name, match:"Forest")   then "MF"      # Forests
+	else if contains(card.name, match:"Fault")   then "MG"      # Fault
 	else                                               "MA"      # other basic lands
 }
 hybrid_color_pair_sort := {
@@ -1055,7 +1059,8 @@ write_wubrg := {
 	(if match(input, match:"blue") then "U" else "")+
 	(if match(input, match:"black") then "B" else "")+
 	(if match(input, match:"red") then "R" else "")+
-	(if match(input, match:"green") then "G" else "")
+	(if match(input, match:"green") then "G" else "")+
+	(if match(input, match:"silver") then "I" else "")
 }
 colored_mana := {to_number(
 	for each sym in cmc_split(to_text()) do (
@@ -1320,7 +1325,7 @@ uneven_correction := { if lines_of_flavor() == 1 then max(4, (card_style.text.co
 old_bar_equation := { top_of_textbox() + padding_height() + card_style.text.content_height - line_height()*(lines_of_flavor() + offset_lines()) + linebreak_height() - uneven_correction() + front_corr() + bar_offset() + hard_flavor_break() +1 }
 bar_equation := {if card_style.text.layout.blocks[1].bottom or else 0 > 0 then card_style.text.top + 0.5*(card_style.text.layout.blocks[0].bottom+card_style.text.layout.blocks[1].top) else old_bar_equation()}
 	
-flavor_text2 := {split_text(match:"\n", remove_tags(card.flavor_text_2+"\n"))}						#remove tags, add \n so .1 doesn't explode
+flavor_text2 := {split_text(match:"\n", remove_tags(card.flavor_text_2+"\n"))}						#remove tags, add \n so .1 doesnt explode
 hard_flavor_break2 := { if not contains(card.flavor_text_2, match:"\n") then 0 else if contains(card.flavor_text_2, match:"<soft-line>\n") then 0 else if lines_of_rules2() >= 3 then -3 else -2}
 font_size2 := {min(14,round_near(card_style.text_2.content_height / card_style.text_2.content_lines) - 8)}	#approximate font size
 adj_char_width2 := {7.35 * min(14, font_size2()+0.95) / 14}										#average char width, adjusted for font size

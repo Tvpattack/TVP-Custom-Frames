@@ -6,12 +6,12 @@ include file: /magic-blends.mse-include/new-blends
 ############################################################## Sorting mana symbols
 
 # correctly sort a mana symbol (no guild mana)
-mana_sort       := sort_text@(order: "\\?XYZI[0123456789]VHSCAIEF(PLONK)(WUBRG)") 
+mana_sort       := sort_text@(order: "\\?XYZ[0123456789]VHSCAIE(PLONK)(WUBRG)") 
 # correctly sort wedge mana
-mana_sort_wedge := sort_text@(order: "\\?XYZI[0123456789]VLHSCAIE(WBGUR)")
-mana_unsort := sort_text@(order:"[/\\?XYZI0123456789VLHSCAIEWUBRG]")
+mana_sort_wedge := sort_text@(order: "\\?XYZ[0123456789]VLHSCAIE(WBGUR)")
+mana_unsort := sort_text@(order:"[/\\?XYZ0123456789VLHSCAIEWUBRG]")
 # correctly sort guild mana
-mana_sort_guild := sort_text@(order: "[\\?XYZI01234567890VLHSCAIEWUBRG/|]") +
+mana_sort_guild := sort_text@(order: "[\\?XYZ01234567890VLHSCAIEWUBRG/|]") +
 		replace@(
 			# No lookbehind :(
 			#match: "(?<!/)(./.|././.|./././.|.[|])(?!/)",
@@ -36,7 +36,7 @@ card_color_to_letters := {
 	(if contains(color_string, match:"orange") then "O" else "")+
 	(if contains(color_string, match:"brown") then "N" else "")+
 	(if contains(color_string, match:"pink") then "K" else "")+
-	(if contains(color_string, match:"silver") then "F" else "")
+	(if contains(color_string, match:"silver") then "I" else "")
 	out_string
 }
 card_is_wedge := {
@@ -70,7 +70,7 @@ color_name := {
 	else if input == "B" then "black"
 	else if input == "R" then "red"
 	else if input == "G" then "green"
-	else if input == "F" then "silver"
+	else if input == "I" then "silver"
 	else if input == "P" then "purple"
 	else if input == "L" then "yellow"
 	else if input == "O" then "orange"
@@ -84,7 +84,7 @@ mana_name := {
 	else if input == "black" then "B"
 	else if input == "red" then "R"
 	else if input == "green" then "G"
-	else if input == "silver" then "F"
+	else if input == "silver" then "I"
 	else if input == "purple" then "P"
 	else if input == "yellow" then "L"
 	else if input == "orange" then "O"
@@ -98,7 +98,7 @@ color_names_3 := { color_name(colors.0) + ", " + color_name(colors.1) + ", " + c
 color_names_4 := { color_name(colors.0) + ", " + color_name(colors.1) + ", " + color_name(colors.2) + ", " + color_name(colors.3) }
 color_names_5 := { color_name(colors.0) + ", " + color_name(colors.1) + ", " + color_name(colors.2) + ", " + color_name(colors.3) + ", " + color_name(colors.4) }
 # color based on mana cost, input == a mana cost
-color_filter  := sort_text@(order: "<WUBRGPLONKF>")
+color_filter  := sort_text@(order: "<WUBRGPLONKI>")
 color_filterH := sort_text@(order: "</>")
 mana_to_color := {
 	count  := number_of_items(in: colors)
@@ -173,16 +173,17 @@ text_to_color := {
 	  text := filter_text(match: "is (colorless|all colors|((blue|white|green|red|black)((,|,? and) (blue|white|green|red|black))*))", in_context: regex_escape(card_name)+"(</[-a-z]+>)* <match>\\.")
 	  if text != "" then (
 	    if contains(text, match: "all colors") then (
-		colors := "FPLONKWUBRG"
+		colors := "IPLONKWUBRG"
 		if land == "true" then land_multicolor()
 		else mana_to_color(hybrid: "")
 	    ) else (
 		colors := ""
-		if contains(text, match: "white") then colors := colors + "W"
-		if contains(text, match: "blue")  then colors := colors + "U"
-		if contains(text, match: "black") then colors := colors + "B"
-		if contains(text, match: "red")   then colors := colors + "R"
-		if contains(text, match: "green") then colors := colors + "G"
+		if contains(text, match: "white")  then colors := colors + "W"
+		if contains(text, match: "blue")   then colors := colors + "U"
+		if contains(text, match: "black")  then colors := colors + "B"
+		if contains(text, match: "red")    then colors := colors + "R"
+		if contains(text, match: "green")  then colors := colors + "G"
+		if contains(text, match: "silver") then colors := colors + "I"
 		if land == "true" then land_multicolor()
 		else mana_to_color(hybrid: "")
 	    )
@@ -276,10 +277,11 @@ basic_land_sort := {
 	else if contains(card.name, match:"Swamp")    then "MD"      # Swamps
 	else if contains(card.name, match:"Mountain") then "ME"      # Mountains
 	else if contains(card.name, match:"Forest")   then "MF"      # Forests
+	else if contains(card.name, match:"Fault")    then "MG"      # Fault
 	else                                               "MA"      # other basic lands
 }
 hybrid_color_pair_sort := {
-	colors := sort_text(casting_cost, order: "<FPLONKWUBRG>")
+	colors := sort_text(casting_cost, order: "<IPLONKWUBRG>")
 	if not set.sort_hybrid_in_pairs then "HK"
 	else if colors == "WU" then "HA"
 	else if colors == "UB" then "HB"
@@ -294,7 +296,7 @@ hybrid_color_pair_sort := {
 	else "HK"
 }
 multi_color_pair_sort := {
-	colors := sort_text(casting_cost, order: "<FPLONKWUBRG>")
+	colors := sort_text(casting_cost, order: "<IPLONKWUBRG>")
 	if not set.sort_multicolor_in_pairs then "GK"
 	else if colors == "WU" then "GA"
 	else if colors == "UB" then "GB"
@@ -331,7 +333,7 @@ color_of_card := {
 		else                                            "J"              # Artifact
 	) else (
 		                                                            # Cards with costs.
-		colors := sort_text(casting_cost, order: "<FPLONKWUBRG>")
+		colors := sort_text(casting_cost, order: "<IPLONKWUBRG>")
 		if colors == "" and contains(type, match:"Artifact") then "J"    # Artifact
 		else if colors == ""  then "A"                                   # Clear Colorless
 		else if colors == "W" then "B"                                   # White
@@ -416,16 +418,16 @@ trim_reminder_x := replace@(match: ". X can’t be 0.", replace: "")
 for_mana_costs := {
 	if input.separator_before == "—" and contains(input.param, match: " ") then (										##multi word
 		if comma_count(input.param) == "," then (																			##two part
-			if match(match: "^[VLHSCAIETQ\\?XYZIFPLONKWUBRG0-9/|]+,", input.param) then													##starts with mana
+			if match(match: "^[VLHSCAETQ\\?XYZIPLONKWUBRG0-9/|]+,", input.param) then													##starts with mana
 				"{add}<param-cost>{alternative_cost(input.param, trim:combined_cost, s:action)}</param-cost>"					##"add" mana 
 			else "<param-cost>{alternative_cost(input.param, trim:combined_cost, s:action)}</param-cost>{non}"					## else cost "non"
 		) else if contains(input.param, match: ",") then (																	##three+ parts
-			if match(match: "^[VLHSCAIETQ\\?XYZIFPLONKWUBRG0-9/|]+,", input.param) then													##starts with mana
+			if match(match: "^[VLHSCAETQ\\?XYZIPLONKWUBRG0-9/|]+,", input.param) then													##starts with mana
 				"{add}<param-cost>{alternative_cost(input.param, trim:long_cost, s:action)}</param-cost>"						##"add" mana with long formatting
 			else "<param-cost>{alternative_cost(input.param, trim:long_nomana_cost, s:action)}</param-cost>{non}"				## else cost "non" with long formatting
 		) else
 			"<param-cost>{alternative_cost(input.param, s:action, trim:lower_first)}{non}</param-cost>"						##one, nonmana, part
-	) else if match(match: "^[VLHSCAIETQ\\?XYZIWUBRG0-9/|]+$", input.param) then											##one word
+	) else if match(match: "^[VLHSCAETQ\\?XYZIWUBRG0-9/|]+$", input.param) then											##one word
 		"{add}<param-mana>{input.param}</param-mana>"																		##mana
 	else
 		"<param-cost>{alternative_cost(input.param, trim:combined_cost, s:action)}</param-cost>{non}"						##nonmana
@@ -1060,8 +1062,8 @@ write_wubrg := {
 	(if match(input, match:"blue") then "U" else "")+
 	(if match(input, match:"black") then "B" else "")+
 	(if match(input, match:"red") then "R" else "")+
-	(if match(input, match:"green") then "G" else "")
-	(if match(input, match:"silver") then "F" else "")
+	(if match(input, match:"green") then "G" else "")+
+	(if match(input, match:"silver") then "I" else "")
 }
 colored_mana := {to_number(
 	for each sym in cmc_split(to_text()) do (

@@ -10,7 +10,7 @@ default_images := [
  b: "/magic-default-image.mse-include/black.jpg"
  r: "/magic-default-image.mse-include/red.jpg"
  g: "/magic-default-image.mse-include/green.jpg"
- f: "/magic-default-image.mse-include/silver.jpg"
+ i: "/magic-default-image.mse-include/silver.jpg"
  p: "/magic-default-image.mse-include/colorless.jpg"
  l: "/magic-default-image.mse-include/colorless.jpg"
  o: "/magic-default-image.mse-include/colorless.jpg"
