@@ -1021,7 +1021,7 @@ card style:
 			shadow displacement x: -1
 			shadow displacement y: 1
 		symbol font:
-			name: { styling.text_box_mana_symbols }
+			name: { if use_jp() then "magic-mana-small-strixhaven-jp" else styling.text_box_mana_symbols }
 			size: {if styling.font_cap != "" then to_number(styling.font_cap) else (if is_mutate() then 12 else 14)}
 			scale down to: 6
 		alignment:
